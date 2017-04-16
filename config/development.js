@@ -11,6 +11,7 @@ process.env.TWILIO_SID = '';
 process.env.AuthToken = '';
 
 process.env.SMTPS_SERVER = '';
+process.env.EMAIL = '';
 
 process.env.SESSIONKEY = 'secret key for tech shop';
 

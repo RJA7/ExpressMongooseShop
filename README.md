@@ -3,19 +3,16 @@ Node Express Mongoose Shop
 
 MongoDB needed
 
-npm i bower -g
-npm i
-bower i
+1. npm i bower -g
+2. npm i
+3. bower i
+4. set process.env params (phone, SID, AUTH_KEY, email, smtp) for login
+5. run mongod from console
+6. run Linqubase.js for db filling
+7. run server.js
+8. Open http://localhost:8080/
+9. Sign is as Admin
 
-set process.env.SMTPS_SERVER for email messaging
+-login: your email or phone from process.env
 
-run mongod from console
-run Linqubase.js for db filling
-run server.js
-
-
-
-http://localhost:8080/
-
-Admin
-login: flinkpark@gmail.com  pass: 1q2w3e
+-password: 1q2w3e

@@ -107,8 +107,8 @@ function fill() {
         user[0].role = 'ADMIN';
         user[0].verified = true;
         user[0].password = '1q2w3e';
-        user[0].phone = '0974787592';
-        user[0].email = 'flinkpark@gmail.com';
+        user[0].phone = process.env.ownerPhone || '0976543210';
+        user[0].email = process.env.EMAIL || 'adminEmailNotSet@gmail.com';
         user[0].save();
         admin.save();
 
