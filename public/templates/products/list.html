@@ -1,0 +1,65 @@
+<%
+var price, name, category, producer;
+var asc, desc;
+
+price = sorts == 'price' ? 'selected' : '';
+name = sorts == 'name' ? 'selected' : '';
+category = sorts == 'category' ? 'selected' : '';
+producer = sorts == 'producer' ? 'selected' : '';
+
+order == '1' ? asc = 'selected' : desc = 'selected';
+%>
+<div class="center-block col-lg-9">
+    <nav class="navbar navbar-default">
+        <div class="col-md-offset-1">
+            Sort by:
+            <select id="sorts">
+                <option value="price"
+                <%= price %>>price</option>
+                <option value="name"
+                <%= name %>>name</option>
+            </select>&nbsp&nbsp&nbsp
+            Order:
+            <select id="order">
+                <option value="asc"
+                <%= asc %>>ASC</option>
+                <option value="desc"
+                <%= desc %>>DESC</option>
+            </select>&nbsp&nbsp&nbsp
+            Results:
+            <input id="limit" value="<%= limit %>" type="number" min="1"><br>
+        </div>
+    </nav>
+    <% _.each(collection, function (product) { %>
+    <div class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+            <a href="#app/products/id=<%= product._id %>"><img src="<%= product.picturePath %>" alt="..."></a>
+
+            <div class="caption">
+                <h3 class="text-uppercase"><%= product.name %></h3>
+
+                <h4>$<%= product.price %></h4>
+
+                <% product.description = product.description || ''; %>
+                <p title="<%= product.description %>"><%= product.description.slice(0, 20) %>...</p>
+
+                <p><a id="addToCart" name="<%= product._id %>" class="btn btn-primary" role="button">Add to
+                    Cart</a>
+                    <a href="#app/products/id=<%= product._id %>" class="btn btn-default" role="button">More</a>
+                </p>
+                <% if (APP.mode) { %>
+                <label>
+                    <input type="checkbox" name="<%= product._id %>" class="products">
+                </label>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+    <% if (APP.mode) { %>
+    <div class="clearfix"></div>
+    <input id="edit" type="button" class="btn btn-primary" value="Edit">
+    <input id="delete" type="button" class="btn btn-danger" value="Delete">
+    <% } %>
+    <div class="clearfix"></div>
+</div>

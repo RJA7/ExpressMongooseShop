@@ -1,0 +1,93 @@
+<%
+var firstName, lastName, address;
+var user = user || {};
+
+var date, month, year;
+var dateArr = [user.birthday, user.lastVisited, user.created];
+var i;
+
+for (i = 0; i < dateArr.length; i++) {
+if (dateArr[i]) {
+dateArr[i] = new Date(dateArr[i]);
+date = dateArr[i].getDate();
+month = dateArr[i].getMonth() + 1;
+year = dateArr[i].getFullYear();
+dateArr[i] = date + '/' + month + '/' + year;
+}
+}
+%>
+<div class="center-block">
+    <h1 class="text-center"><%= firstName %> Profile</h1><br>
+
+    <div class="col-lg-5">
+        <img src="<%= user.picturePath %>" class="img-rounded pull-left" alt="avatar" width="300">
+    </div>
+    <div class="float-left col-lg-7">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <td><b>User:</b></td>
+                <td><a href="#app/users/id=<%= user._id %>">User Profile</a></td>
+            </tr>
+            <tr>
+                <td><b>First Name:</b></td>
+                <td><%= firstName %></td>
+            </tr>
+            <tr>
+                <td><b>Last Name:</b></td>
+                <td><%= lastName %></td>
+            </tr>
+            <tr>
+                <td><b>Address:</b></td>
+                <td><%= address %></td>
+            </tr>
+            <tr>
+                <td><b>User Name:</b></td>
+                <td><%= user.name %></td>
+            </tr>
+            <tr>
+                <td><b>Email:</b></td>
+                <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
+            </tr>
+            <tr>
+                <td><b>Phone:</b></td>
+                <td><%= user.phone %></td>
+            </tr>
+            <% if (user.gender) { %>
+            <tr>
+                <td><b>Gender:</b></td>
+                <td><%= user.gender %></td>
+            </tr>
+            <% } if (user.address) { %>
+            <tr>
+                <td><b>User Address:</b></td>
+                <td><%= user.address %></td>
+            </tr>
+            <% } if (user.birthday) { %>
+            <tr>
+                <td><b>Birthday:</b></td>
+                <td><%= dateArr[0] %></td>
+            </tr>
+            <% } %>
+            <tr>
+                <td><b>Last Visit:</b></td>
+                <td><%= dateArr[1] %></td>
+            </tr>
+            <tr>
+                <td><b>Register Date:</b></td>
+                <td><%= dateArr[2] %></td>
+            </tr>
+            <tr>
+                <td><b>Carts:</b></td>
+                <td><a href="#app/users/id=<%= user._id %>/child=carts">Carts</a></td>
+            </tr>
+            <tr>
+                <td><b>Comments:</b></td>
+                <td><a href="#app/users/id=<%= user._id %>/child=comments">Comments</a></td>
+            </tr>
+            <tr>
+                <td><input id="edit" type="button" class="btn btn-primary" value="Edit">
+                    <input id="delete" type="button" class="btn btn-warning" value="Delete"></td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<%
+var date, month, year;
+var dateArr;
+var i;
+%>
+<div class="center-block">
+    <div class="panel panel-default">
+        <div class="panel-heading">Users List</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th id="name"><a>User</a></th>
+                <th>Connect</th>
+                <th id="status"><a>Status</a></th>
+                <th id="birthday"><a>Birthday</a></th>
+                <th id="lastVisited"><a>Last Visit</a></th>
+                <th id="created"><a>Created</a></th>
+                <th id="gender"><a>Gender</a></th>
+                <th id="address"><a>Address</a></th>
+                <th>Etc.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(collection, function (user) { %>
+            <%
+            dateArr = [user.birthday, user.lastVisited, user.created];
+
+            for (i = 0; i < dateArr.length; i++) {
+            if (dateArr[i]) {
+            dateArr[i] = new Date(dateArr[i]);
+            date = dateArr[i].getDate();
+            month = dateArr[i].getMonth() + 1;
+            year = dateArr[i].getFullYear();
+            dateArr[i] = date + '/' + month + '/' + year;
+            }
+            }
+            %>
+            <tr>
+                <td>
+                    <img src="<%= user.picturePath %>" alt="" width="64"><br>
+                    <a href="#app/users/id=<%= user._id %>" class="user-link"><%= user.name %></a><br>
+
+                    <% if (user.role == 'ADMIN') { %>
+                    <a href="#app/admins/id=<%= user.admin %>">Admin</a>
+                    <% } else { %>
+                    <a href="#app/users/id=<%= user._id %>">User</a>
+                    <% } %>
+                    <br>
+                    <label>
+                        <input type="checkbox" name="<%= user._id %>" class="users">
+                    </label>
+                </td>
+                <td><a href="mailto:<%= user.email %>">Send message</a>
+                    <%= user.phone %>
+                </td>
+                <td>
+                    <% if (user.status) { %>
+                    <span class="label label-success">full</span>
+                    <% } else { %>
+                    <span class="label label-danger">ban</span>
+                    <% } %>
+                </td>
+                <td><%= dateArr[0] %></td>
+                <td><%= dateArr[1] %></td>
+                <td><%= dateArr[2] %></td>
+                <td><%= user.gender %></td>
+                <td>
+                    <% user.address = user.address || ''; %>
+                    <span title="<%= user.address %>"><%= user.address.slice(0, 10) %>...</span>
+                </td>
+                <td><a href="#app/users/id=<%= user._id %>/child=comments">Comments</a>
+                    <a href="#app/users/id=<%= user._id %>/child=carts">Carts</a></td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <input id="create" type="button" class="btn btn-success" value="Create">
+    <input id="edit" type="button" class="btn btn-primary" value="Edit">
+    <input id="delete" type="button" class="btn btn-danger" value="Delete">
+    <input id="banUser" type="button" class="btn btn-warning" value="Ban">
+</div>

@@ -1,0 +1,59 @@
+<div style="background-color: #f9f9f9">
+    <a href="#app/products"><img src="images/footer.jpg" width="100%"></a>
+</div><br>
+<div class="text-center">
+    <% if (APP.user) { %>
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a class="navbar-link" href="#app/users/id=1">My Profile</a></li>
+            <li><a href="#app/users/id=<%= APP.user.id %>/child=carts">My Carts</a></li>
+            <li><a href="#app/users/id=<%= APP.user.id %>/child=comments">My Comments</a></li>
+        </ul>
+    </div>
+    <% } %>
+
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#app/products">Products</a></li>
+            <li><a href="#app/categories">Categories</a></li>
+            <li><a href="#app/producers">Producers</a></li>
+        </ul>
+    </div>
+
+    <%
+    var categories = categories || {};
+    var producers = producers || {};
+    var i;
+    %>
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <% for (i = 0; i < 3; i++) { %>
+                <li><a href="#app/categories/id=<%= categories[i]._id %>/child=products">
+                    <%= categories[i].name %></a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <% if (!APP.user) { %>
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <% for (i = 3; i < 6; i++) { %>
+                <li><a href="#app/categories/id=<%= categories[i]._id %>/child=products"><%= categories[i].name %></a>
+            <% } %>
+        </ul>
+    </div>
+    <% } %>
+
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked">
+            <% for (i = 0; i < 3; i++) { %>
+                <li><a href="#app/producers/id=<%= producers[i]._id %>/child=products"><%= producers[i].name %></a></li>
+            <% } %>
+        </ul>
+    </div>
+
+    <div class="clearfix"></div>
+    <hr>
+    <div class="text-center">&copy; Copyright <%= new Date().getFullYear() %></div>
+</div>

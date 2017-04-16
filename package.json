@@ -1,0 +1,35 @@
+{
+  "name": "Shop",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "async-waterfall": "latest",
+    "body-parser": "~1.13.2",
+    "connect-mongo": "latest",
+    "connect-multiparty": "latest",
+    "consolidate": "latest",
+    "cookie-parser": "~1.3.5",
+    "deasync": "latest",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-session": "latest",
+    "gm": "latest",
+    "helmet": "latest",
+    "mongodb": "latest",
+    "mongoose": "^4.9.4",
+    "mongoose-relationship": "latest",
+    "morgan": "~1.6.1",
+    "nodemailer": "latest",
+    "phone": "latest",
+    "random-strings": "latest",
+    "serve-favicon": "~2.3.0",
+    "sha1": "latest",
+    "socket.io": "latest",
+    "twilio": "latest",
+    "validator": "latest",
+    "winston": "^2.3.1"
+  }
+}

@@ -1,0 +1,41 @@
+<div class="center-block">
+    <div class="panel panel-default">
+        <div class="panel-heading">Producers List</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Producer</th>
+                <th id="name"><a>Name</a></th>
+                <th id="description"><a>Description</a></th>
+                <th>Products</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(collection, function (producer) { %>
+            <tr>
+                <td><a href="#app/producers/id=<%= producer._id %>">
+                    <img src="<%= producer.picturePath %>" alt="" width="64"></a></td>
+                <td><a href="#app/producers/id=<%= producer._id %>"><%= producer.name %></a></td>
+                <td>
+                    <span title="<%= producer.description %>">
+                        <% producer.description = producer.description || ''; %>
+                        <%= producer.description.slice(0, 10) %>...
+                    </span>
+                </td>
+                <td><a href="#app/producers/id=<%= producer._id %>/child=products">Products</a></td>
+                <% if (APP.admin) { %>
+                <td><input type="checkbox" name="<%= producer._id %>" class="producers"></td>
+                <% } %>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<% if (APP.admin) { %>
+<div>
+    <input id="create" type="button" class="btn btn-success" value="Create">
+    <input id="edit" type="button" class="btn btn-primary" value="Edit">
+    <input id="delete" type="button" class="btn btn-danger" value="Delete">
+</div>
+<% } %>

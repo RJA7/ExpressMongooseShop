@@ -1,0 +1,66 @@
+<%
+var count = collection.length;
+var totalPrice = 0;
+var slider;
+_.each(collection, function(product) {
+totalPrice += product.price;
+});
+%>
+<div class="row">
+    <div class="col-md-6">
+        <a href="#app/"><img src="/images/logo.png" width="500"/></a>
+    </div>
+    <div class="col-md-4 col-md-offset-2" id="slider">
+        <div id="flip"><%= count %> items: $<%= totalPrice %></div>
+        <div id="panel" style="position: absolute; z-index: 100; <% if (!slider) { %>display: none;<% } %>">
+            <div class="list-group">
+                <% _.each(collection, function(product) { %>
+                <a href="#app/products/id=<%= product._id %>" class="list-group-item active">
+                    <h4 class="list-group-item-heading"><%= product.name %>
+                        <img src="<%= product.picturePath %>" width="62px"/>
+                        <span class="list-group-item-text">
+                            <span id="<%= product._id %>" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </span>
+                    </h4>
+                    <hr>
+                </a>
+                <% }); %>
+            </div>
+            <div class="clearfix"></div>
+            <% if (!collection.length) { %>
+            <span>Basket is empty</span>
+            <% } else { %>
+            <br><input type="button" class="btn btn-success" id="confirm" value="Confirm Cart">
+            <% } %>
+        </div>
+    </div>
+    <div class="clearfix"></div><br>
+</div>
+
+<% if (APP.admin) { %>
+<div>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default admin" name="admins">Admins</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default admin" name="users">Users</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default admin" name="carts">Carts</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default admin" name="categories">Categories</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default admin" name="comments">Comments</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default admin" name="producers">Producers</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default admin" name="products">Products</button>
+        </div>
+    </div>
+</div>
+<% } %>

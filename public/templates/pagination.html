@@ -1,0 +1,23 @@
+<div class="text-center">
+    <% if (page > pages) { %>
+    <div>There is no such page</div>
+    <a href="#" name="1">First Page</a>
+    <% } %>
+    <% if (pages) { %>
+    <nav>
+        <ul class="pagination">
+            <li><a href="#" aria-label="Previous" name="<%= +page - 1 %>">&laquo;</a></li>
+            <%
+            var i;
+            var cls;
+
+            for (i = 1; i <= pages; i++) {
+            cls = i == page ? 'active' : '';
+            %>
+            <li class="<%= cls %>"><a href="#" name="<%= i %>"><%= i %></a></li>
+            <% } %>
+            <li><a href="#" aria-label="Next" name="<%= +page + 1 %>">&raquo;</a></li>
+        </ul>
+    </nav>
+    <% } %>
+</div>

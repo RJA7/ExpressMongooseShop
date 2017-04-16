@@ -1,0 +1,25 @@
+<%
+var user = user || {};
+var message = message || '';
+var date = new Date();
+date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+%>
+<li class="left clearfix" id="<%= user.id %>">
+    <span class="chat-img pull-left">
+        <% if (user.picturePath) { %>
+        <a href="#app/users/id=<%= user._id %>">
+        <img src="<%= user.picturePath %>" alt="User Avatar" class="img-circle" width="60px" height="60px"/></a>
+        <% } else { %>
+        <img src="/images/users/default.jpg" alt="User Avatar" class="img-circle" width="60px" height="60px"/>
+        <% } %>
+    </span>
+    <div class="chat-body clearfix">
+        <div class="header">
+            <strong class="primary-font"><%= user.name %></strong>
+            <small class="pull-right text-muted">
+                <span class="glyphicon glyphicon-time"></span><%= date %>
+            </small>
+        </div>
+        <p><%= message %></p>
+    </div>
+</li>

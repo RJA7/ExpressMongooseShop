@@ -1,0 +1,49 @@
+<%
+var title, body, user, _id, product, date;
+user = user || {};
+date = new Date(date)
+day = date.getDate();
+var month = date.getMonth() + 1;
+var year = date.getFullYear();
+month = month < 10 ? '0' + month : month;
+day = day < 10 ? '0' + day : day;
+date = year + '-' + month + '-' + day;
+
+date = isNaN(day) ? null : date;
+%>
+<div class="center-block">
+    <h1 class="text-center"><a href="#app/comments/id=<%= _id %>">Comment</a></h1><br>
+
+    <div class="col-md-10 col-md-offset-1">
+        <form class="form-horizontal" role="form">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td><label class="control-label">Title:</label></td>
+                    <td><input name="title" class="form-control" type="text" value="<%= title %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Body:</label></td>
+                    <td><textarea name="body" class="form-control"><%= body %></textarea></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Date:</label></td>
+                    <td><input name="date" class="form-control" type="date" value="<%= date %>"></td>
+                </tr>
+                <tr>
+                    <td><b>User:</b></td>
+                    <td><a href="#app/users/id=<%= user._id %>"><%= user.name %></a></td>
+                </tr>
+                <tr>
+                    <td><b>Product:</b></td>
+                    <td><a href="#app/products/id=<%= product %>">Product</a></td>
+                </tr>
+                <tr>
+                    <td><input id="save" type="button" class="btn btn-success" value="Save Changes">
+                        <input id="cancel" type="reset" class="btn btn-warning" value="Cancel"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

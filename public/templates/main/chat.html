@@ -1,0 +1,33 @@
+<div style="position: fixed; left: 2%; top: 5%; z-index: 99; width: 150px;" id="chats">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"
+                                id="open">
+                            <span id="collapse" class="glyphicon glyphicon-collapse-down"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="slideChat" style="display: none;">
+                    <div class="panel-body" style="height: 350px;">
+                        <ul class="chat">
+
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="chatInput" type="text" class="form-control input-sm" placeholder="Type your message here..."/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="chatBtn">Send</button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

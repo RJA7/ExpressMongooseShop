@@ -1,0 +1,14 @@
+<div class="list-group">
+    <a class="list-group-item active">Categories</a>
+    <% _.each(categories, function(category) { %>
+    <button id="<%= category._id %>" class="list-group-item">
+        <%= category.name %> <input type="checkbox">
+    </button>
+    <% }); %>
+</div>
+<div class="list-group">
+    <a class="list-group-item active">Producers</a>
+    <% _.each(producers, function(producer) { %>
+    <button id="<%= producer._id %>" type="button" class="list-group-item producer"><%= producer.name %></button>
+    <% }); %>
+</div>

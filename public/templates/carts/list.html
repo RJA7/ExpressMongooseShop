@@ -1,0 +1,57 @@
+<%
+var date, month, year;
+var dateArr;
+var i;
+%>
+<hr>
+<div class="center-block">
+    <div class="panel panel-default">
+        <div class="panel-heading">Carts List</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Cart</th>
+                <th>User</th>
+                <th id="address"><a>Address</a></th>
+                <th id="orderDate"><a>Order Date</a></th>
+                <th id="shippedDate"><a>Shipped Date</a></th>
+                <th>Products</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(collection, function (cart) {
+            dateArr = [cart.orderDate, cart.shippedDate];
+
+            for (i = 0; i < dateArr.length; i++) {
+            if (dateArr[i]) {
+            dateArr[i] = new Date(dateArr[i]);
+            date = dateArr[i].getDate();
+            month = dateArr[i].getMonth() + 1;
+            year = dateArr[i].getFullYear();
+            dateArr[i] = date + '/' + month + '/' + year;
+            }
+            }
+            %>
+            <tr>
+                <td><a href="#app/carts/id=<%= cart._id %>">Cart</a></td>
+                <td><a href="#app/users/id=<%= cart.user %>">User</a></td>
+                <td><span title="<%= cart.address %>"><%= cart.address.slice(0, 10) %>...</span></td>
+                <td><%= dateArr[0] %></td>
+                <td><%= dateArr[1] %></td>
+                <td><a href="#app/carts/id=<%= cart._id %>/child=products">Products</a></td>
+                <% if (APP.admin) { %>
+                <td><input type="checkbox" name="<%= cart._id %>" class="admins"></td>
+                <% } %>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<% if (APP.admin) { %>
+<div>
+    <input id="create" type="button" class="btn btn-success" value="Create">
+    <input id="edit" type="button" class="btn btn-primary" value="Edit">
+    <input id="delete" type="button" class="btn btn-danger" value="Delete">
+</div>
+<% } %>

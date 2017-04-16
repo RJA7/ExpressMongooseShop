@@ -1,0 +1,74 @@
+<%
+var firstName, lastName, address;
+var user = user || {};
+var male, female;
+
+user.gender == 'Male' ? male = 'selected' : female = 'selected';
+%>
+<div class="center-block">
+    <h1 class="text-center"><a href="#app/admins/id=<%= _id %>"><%= firstName %></a> Profile</h1><br>
+
+    <form class="form-horizontal" role="form">
+        <div class="col-lg-5">
+            <% if (user.picturePath) { %>
+            <img src="<%= user.picturePath %>" class="img-rounded pull-left" alt="avatar" id="picture" width="300">
+            <% } %>
+            <div class="col-md-10"><input name="picture" type="file" class="form-control"></div>
+        </div>
+        <div class="float-left col-lg-7">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td><label class="control-label">First Name:</label></td>
+                    <td><input name="firstName" class="form-control" type="text" value="<%= firstName %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Last Name:</label></td>
+                    <td><input name="lastName" class="form-control" type="text" value="<%= lastName %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Address:</label></td>
+                    <td><textarea name="address" class="form-control"><%= address %></textarea></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">User Name:</label></td>
+                    <td><input name="name" class="form-control" type="text" value="<%= user.name %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Email:</label></td>
+                    <td><input name="email" class="form-control" type="email" value="<%= user.email %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Phone:</label></td>
+                    <td><input name="phone" class="form-control" type="tel" value="<%= user.phone %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Password:</label></td>
+                    <td><input name="password" class="form-control" type="password" value=""></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Confirm Password:</label></td>
+                    <td><input name="confirmPassword" class="form-control" type="password" value=""></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Gender:</label></td>
+                    <td>
+                        <select name="gender" id="gender" class="form-control">
+                            <option value="Male" <%= male %>>Male</option>
+                            <option value="Female" <%= female %>>Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Birthday:</label></td>
+                    <td><input name="birthday" class="form-control" type="date" value="<%= user.birthday %>"></td>
+                </tr>
+                <tr>
+                    <td><input id="save" type="submit" class="btn btn-success" value="Save Changes">
+                        <input id="cancel" type="reset" class="btn btn-warning" value="Cancel"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>

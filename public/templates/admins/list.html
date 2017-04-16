@@ -1,0 +1,37 @@
+<div class="center-block">
+    <div class="panel panel-default">
+        <div class="panel-heading">Admins List</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Admin</th>
+                <th id="firstName"><a>First Name</a></th>
+                <th id="lastName"><a>Last Name</a></th>
+                <th id="address"><a>Address</a></th>
+                <th>User</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(collection, function (admin) { %>
+            <tr>
+                <td><a href="#app/admins/id=<%= admin._id %>">Admin</a></td>
+                <td><%= admin.firstName %></td>
+                <td><%= admin.lastName %></td>
+                <td><span title="<%= admin.address %>"><%= admin.address.slice(0, 10) %>...</span></td>
+                <td><a href="#app/users/id=<%= admin.user %>">User</a></td>
+                <td>
+                    <label>
+                        <input type="checkbox" name="<%= admin._id %>" class="admins">
+                    </label>
+                </td>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <input id="create" type="button" class="btn btn-success" value="Create">
+    <input id="edit" type="button" class="btn btn-primary" value="Edit">
+    <input id="delete" type="button" class="btn btn-danger" value="Delete">
+</div>

@@ -1,0 +1,74 @@
+<%
+var category, price, producer, count, description, name, picturePath;
+var selected;
+producer = producer || {};
+category = category || {};
+%>
+<div class="center-block">
+    <h1 class="text-center"><a href="#app/products/id=<%= product._id %>">Product</a></h1>
+
+    <form class="form-horizontal" role="form">
+        <div class="col-lg-5">
+            <% if (product.picturePath) { %>
+            <img src="<%= product.picturePath %>" class="img-rounded pull-left" alt="avatar" id="picture" width="300">
+            <% } %>
+            <div class="col-md-8"><input name="picture" type="file" class="form-control"></div>
+        </div>
+        <div class="float-left col-lg-7">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td><label class="control-label">Name:</label></td>
+                    <td><input name="name" class="form-control" type="text" value="<%= product.name %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Price:</label></td>
+                    <td><input name="price" class="form-control" type="text" value="<%= product.price %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Count:</label></td>
+                    <td><input name="count" class="form-control" type="text" value="<%= product.count %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Description:</label></td>
+                    <td><textarea name="description" class="form-control"><%= product.description %></textarea></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Category:</label></td>
+                    <td>
+                        <select name="category" id="category" class="form-control">
+                            <% _.each(categories, function(category) {
+                            category._id == product.category._id ? selected = 'selected' : selected = null;
+                            %>
+                            <option value="<%= category._id %>"
+                            <%= selected %>><%= category.name %></option>
+                            <% }); %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Producer:</label></td>
+                    <td>
+                        <select name="producer" id="producer" class="form-control">
+                            <% _.each(producers, function(producer) {
+                            producer._id == product.producer._id ? selected = 'selected' : selected = null;
+                            %>
+                            <option value="<%= producer._id %>"
+                            <%= selected %>><%= producer.name %></option>
+                            <% }); %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Comments:</b></td>
+                    <td><a href="#app/products/id=<%= product._id %>/child=comments">comments</a></td>
+                </tr>
+                <tr>
+                    <td><input id="save" type="button" class="btn btn-success" value="Save Changes">
+                        <input id="cancel" type="reset" class="btn btn-warning" value="Cancel"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>

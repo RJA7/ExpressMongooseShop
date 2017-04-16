@@ -1,0 +1,40 @@
+<%
+var date = new Date()
+var year = date.getFullYear();
+var month = date.getMonth();
+var day = date.getDate();
+
+month = !month ? 12 : month;
+month = month < 10 ? '0' + month : month;
+day = day < 10 ? '0' + day : day;
+date = year + '-' + month + '-' + day;
+%>
+<div class="center-block">
+    <h1 class="text-center">Create Dispatch</h1><br>
+
+    <div class="col-md-10 col-md-offset-1">
+        <form class="form-horizontal" role="form">
+            <table class="table table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td><label class="control-label">Date From Last Visit:</label></td>
+                    <td><input id="date" name="date" class="form-control" type="date" value="<%= date %>"></td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Message:</label></td>
+                    <td><textarea id="message" name="message" class="form-control" placeholder="Message"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="control-label">Dispatch Type:</label></td>
+                    <td>Email: <input name="type" class="form-control" type="radio" value="email" checked>
+                        Phone: <input name="type" class="form-control" type="radio" value="phone"></td>
+                </tr>
+                <tr>
+                    <td><input id="send" type="button" class="btn btn-success" value="Create Dispatch"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

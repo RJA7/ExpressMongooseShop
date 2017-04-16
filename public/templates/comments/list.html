@@ -1,0 +1,36 @@
+<% _.each(collection, function (comment) { %>
+
+<div class="center-block">
+    <div class="col-md-8 col-md-offset-2" style="background-color: #D2E0E6">
+        <div class="media-left">
+            <a href="#app/users/id=<%= comment.user._id %>">
+                <img class="media-object" src="<%= comment.user.picturePath %>" alt="" width="64" height="64">
+            </a>
+            <%= comment.user.name %>
+        </div>
+
+        <div class="media-body">
+            <% if (APP.mode) { %>
+            <h4 class="media-heading">
+                <a href="#app/comments/id=<%= comment._id %>"><%= comment.title %></a>
+            </h4>
+            <% } else { %>
+            <h4 class="media-heading"><%= comment.title %></h4>
+            <% } %>
+            <%= comment.body %><br/>
+            <%= comment.date.slice(0, 10) %>
+        </div>
+        <% if (APP.mode) { %>
+        <a href="#app/products/id=<%= comment.product %>">Product</a><br/>
+        <label>
+            <input type="checkbox" name="<%= comment._id %>" class="users">
+        </label>
+        <% } %>
+    </div>
+</div>
+<div class="clearfix"></div><br>
+<% }); %>
+<% if (APP.mode) { %>
+<br/><input id="edit" type="button" class="btn btn-primary" value="Edit">
+<input id="delete" type="button" class="btn btn-danger" value="Delete">
+<% } %>
